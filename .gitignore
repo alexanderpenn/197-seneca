@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/.cache
+/dist
+src/backend/routes/keys.js
 
 # testing
 /coverage

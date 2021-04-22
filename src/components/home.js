@@ -9,7 +9,6 @@ import Bar from './bar'
 const Home = () => {
   const [scoreData, setScoreData] = useState({'date': ['01/01/21', '01/02/21', '01/03/21', '01/04/21', '01/05/21'], 'score': [51, 78, 89, 76, 81]})
 
-
   return (
     <div className='container'>
       <FAB />

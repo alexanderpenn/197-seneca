@@ -1,4 +1,4 @@
-import reactDom from 'react-dom'
+import React from 'react'
 import { Fab, Action } from 'react-tiny-fab'
 import 'react-tiny-fab/dist/styles.css'
 
@@ -33,7 +33,7 @@ const FAB = () => {
             style={styles}
             icon={<i className="material-icons">menu</i>}
             alwaysShowTitle={true}
-            onClick={() => {console.log('clickled')}}> 
+            onClick={() => {console.log('clicked')}}> 
         
             <Action
                 style={{backgroundColor: '#818EC6'}}
