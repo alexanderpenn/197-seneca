@@ -10,7 +10,7 @@ passport.use(
   new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret,
-    callbackURL: "/auth/google/redirect"
+    callbackURL: "/auth/google/callback"
   }, (accessToken, refreshToken, email, done) => {
     datastore
         .createQuery('User')

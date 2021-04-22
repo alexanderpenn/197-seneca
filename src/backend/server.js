@@ -27,15 +27,6 @@ app.use(passport.session())
 
 app.use('/auth', authRouter)
 
-app.use('/example', async (req, res) => {
-    await datastore.save({
-        key: datastore.key(['Task', 'sampletask1']),
-        data: {
-            description: 'something'
-        }
-    });
-    res.send({ message: 'success' });
-});
 
 app.get('/favicon.ico', (_, res) => {res.status(404).send()})// GTO
 app.get('*', (_, res) => {res.sendFile(path.join(__dirname, '../dist/index.html'))})// GTO

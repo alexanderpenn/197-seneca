@@ -17,8 +17,9 @@ const Auth = () => {
 
     const clicked = async (e) => {
         e.preventDefault()
+        console.log('clicked')
         try {
-            const response = await axios.get('/auth/googler')
+            const response = await axios.get('/google/callback')
             console.log(response)
         } catch(error) {
             console.log(error)
@@ -30,7 +31,7 @@ const Auth = () => {
 
     return (
     <div>
-        <button onClick={clicked}>Sign in with Google</button>
+        <a href="/auth/google">Sign In with Google</a>
     </div>
     )
 }
