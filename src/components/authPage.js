@@ -7,20 +7,12 @@ const axios = require('axios')
 
 
 const Auth = () => {
-    const onSuccess = (res) => {
-        console.log(res)
-    }
-
-    const onFailure = (res) => {
-        console.log(res)
-    }
 
     const clicked = async (e) => {
         e.preventDefault()
         console.log('clicked')
         try {
             const response = await axios.get('/google/callback')
-            console.log(response)
         } catch(error) {
             console.log(error)
             }
@@ -39,6 +31,3 @@ const Auth = () => {
 module.exports = Auth
 
 
-
-
-// why cant i make the main centered in middle

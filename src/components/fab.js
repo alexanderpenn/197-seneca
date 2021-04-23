@@ -1,6 +1,7 @@
 import React from 'react'
 import { Fab, Action } from 'react-tiny-fab'
 import 'react-tiny-fab/dist/styles.css'
+import axios from 'axios'
 
 
 
@@ -19,8 +20,10 @@ const FAB = () => {
         return
     }
 
-    const handleLogOut = () => {
-        return
+    const handleLogOut = (e) => {
+        e.preventDefault()
+        axios.get('/auth/logout')
+        
     }
 
     const handleContact = () => {

@@ -1,5 +1,5 @@
 import { authenticate } from 'passport'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import Home from './components/home'
@@ -15,22 +15,24 @@ const App = () => {
     const response = await axios.get('auth/user')
     setUser(response.data.user)
   }
-  const fetchLoginStatus = async() => {
-    try {
-      await axios.get('auth/status')
-      setLoggedIn(true)
-      await fetchUser()
-    } catch (e) {
-      setLoggedIn(false)
-    }
+
+  const fetchLoginStatus = () => {
+    axios.get('auth/isLoggedIn').then(res => {
+      console.log('Login status', res.data)
+      setLoggedIn(res.data)
+    })
   }
 
+  useEffect(() => {
+    fetchLoginStatus()
+  })
+
   const element = (loggedIn ? <Home /> : <Auth />)
-  
+
   return (
     <div className="App">
       <header className="App-header"></header>
-      <Auth />
+      { element }
     </div>
   )
 }
@@ -40,4 +42,4 @@ export default App
 
 
 // TODO: Actually query user / login status and use element
-// TODO: consider using effect to autorefresh
+// TODO: consider using setInterval to auto refresh loginstatus
