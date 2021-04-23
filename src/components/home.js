@@ -78,13 +78,3 @@ const Home = () => {
 
 export default Home
 
-
-
-// TODO: Datastore Backend
-// TODO: OAuth and Signup
-// TODO: Login | Logout
-// TODO: Query and Update Datastore
-// TODO: File Upload
-// TODO: Popup on data points informing of changes
-// TODO: Video Player to show specific infractions & the ability for a user to dispute infraction
-// TODO: Design: Card spacing, fit chart on single page, black highlight on span elements, 

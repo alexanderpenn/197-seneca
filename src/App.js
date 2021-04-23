@@ -39,7 +39,25 @@ const App = () => {
 
 export default App
 
-
-
+// TODO: enable users that havent signed up ot submit a form that modifies user object
 // TODO: Actually query user / login status and use element
-// TODO: consider using setInterval to auto refresh loginstatus
+// TODO: consider using setInterval to auto refresh login status
+
+
+
+// TODO: (auth) remove passport
+// TODO: (auth) identify what i need to pass in to get email and what email currently is
+// TODO: (auth) handle errors
+// TODO: (passport) import into auth routes
+// TODO: (components/home) pull data from datastore
+// TODO: (components/home) enable google drive linking
+// TODO: (components/home) stylize charts: 
+//        Popup on data points informing of changes
+//        Video Player to show specific infractions & the ability for a user to dispute infraction
+//        Design: Card spacing, fit chart on single page, black highlight on span elements, 
+
+// TODO: run es linter
+
+
+
+// TODO: (GTO) WebSocket, Cors

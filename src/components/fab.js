@@ -23,7 +23,7 @@ const FAB = () => {
     const handleLogOut = (e) => {
         e.preventDefault()
         axios.get('/auth/logout')
-        
+
     }
 
     const handleContact = () => {
@@ -62,6 +62,3 @@ const FAB = () => {
     )
 }
 export default FAB
-
-// TODO: Change color of span element within action
-

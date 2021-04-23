@@ -43,13 +43,15 @@ passport.use(
             const newUser = {
             userId: email.id,
             displayName: email.displayName,
-            //phone_number: null,
-            //birth_date: null,
-            //vehicle_id: null,
-            //camera_id: null,
-            //time_zone: null,
-            //oauth_token: null,
-            //drive_folder_id: null,
+            phoneNumber: null,
+            dob: null,
+            make: null,
+            model: null,
+            year: null,
+            city: null,
+            state: null,
+            zip: null,
+            url: null,
             }
             const entity = {
                 key: userKey,
@@ -90,13 +92,14 @@ router.get("/isLoggedIn", (req, res) => {
     } else {
         res.send(false)
     }
+})
+
+router.get('/signup', (req, res) => {
     
 })
 
 module.exports = router
 
-//TODO should i handle errors in this function either way need to add json
-// TODO why can i not pull the email
 
 
 

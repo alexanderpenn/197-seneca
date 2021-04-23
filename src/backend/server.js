@@ -36,6 +36,3 @@ app.listen(port, () => {console.log('listening on 3k...')})
 
 
 
-// TODO: Serve the home page once a user is able to login
-// TODO Identify if i need to use cors and why i am getting connection refused from axios
-// TODO understand what websocket does and if i need to change anything

@@ -3,3 +3,13 @@ indexes:
   properties:
   - name: userId
   - name: displayName
+  - name: phoneNumber
+  - name: dob
+  - name: make
+  - name: model
+  - name: year
+  - name: city
+  - name: state
+  - name: zip
+  - name: url
+
