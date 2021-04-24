@@ -3,62 +3,60 @@ import { Fab, Action } from 'react-tiny-fab'
 import 'react-tiny-fab/dist/styles.css'
 import axios from 'axios'
 
-
-
 const FAB = () => {
+  const styles = {
+    top: 0,
+    left: 0,
+  }
 
-    const styles = {
-        top: 0,
-        left: 0,
-    }
+  const mainButtonStyles = {
+    backgroundColor: '#818EC6',
+  }
 
-    const mainButtonStyles = {
-        backgroundColor: '#818EC6',
-    }
+  const handleVideoUpload = () => {
+  }
 
-    const handleVideoUpload = () => {
-        return
-    }
+  const handleLogOut = (e) => {
+    e.preventDefault()
+    axios.get('/auth/logout')
+  }
 
-    const handleLogOut = (e) => {
-        e.preventDefault()
-        axios.get('/auth/logout')
+  const handleContact = () => {
+  }
 
-    }
+  return (
+    <Fab
+      mainButtonStyles={mainButtonStyles}
+      style={styles}
+      icon={<i className="material-icons">menu</i>}
+      alwaysShowTitle
+      onClick={() => { console.log('clicked') }}
+    >
 
-    const handleContact = () => {
-        return
-    }
-    
-    return (
-        <Fab
-            mainButtonStyles={mainButtonStyles}
-            style={styles}
-            icon={<i className="material-icons">menu</i>}
-            alwaysShowTitle={true}
-            onClick={() => {console.log('clicked')}}> 
-        
-            <Action
-                style={{backgroundColor: '#818EC6'}}
-                text="Upload Video"
-                onClick={handleVideoUpload}>
-                <i className="material-icons">file_upload</i>
-            </Action>
+      <Action
+        style={{ backgroundColor: '#818EC6' }}
+        text="Upload Video"
+        onClick={handleVideoUpload}
+      >
+        <i className="material-icons">file_upload</i>
+      </Action>
 
-            <Action
-                style={{backgroundColor: '#818EC6'}}
-                text="Contact Us"
-                onClick={handleContact}>
-                <i className="material-icons">contact_support</i>
-            </Action>
+      <Action
+        style={{ backgroundColor: '#818EC6' }}
+        text="Contact Us"
+        onClick={handleContact}
+      >
+        <i className="material-icons">contact_support</i>
+      </Action>
 
-            <Action
-                style={{backgroundColor: '#818EC6'}}
-                text="Logout"
-                onClick={handleLogOut}>
-                <i className="material-icons">logout</i>
-            </Action>
-        </Fab>
-    )
+      <Action
+        style={{ backgroundColor: '#818EC6' }}
+        text="Logout"
+        onClick={handleLogOut}
+      >
+        <i className="material-icons">logout</i>
+      </Action>
+    </Fab>
+  )
 }
 export default FAB

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import 'materialize-css/dist/css/materialize.min.css'
@@ -7,15 +6,15 @@ import '../App.css'
 import Bar from './bar'
 
 const Home = () => {
-  const [scoreData, setScoreData] = useState({'date': ['01/01/21', '01/02/21', '01/03/21', '01/04/21', '01/05/21'], 'score': [51, 78, 89, 76, 81]})
+  const [scoreData, setScoreData] = useState({ date: ['01/01/21', '01/02/21', '01/03/21', '01/04/21', '01/05/21'], score: [51, 78, 89, 76, 81] })
 
   return (
-    <div className='container'>
+    <div className="container">
       <FAB />
-      <div className='row center'>
-        <div className='card col m5 s12 left'>
+      <div className="row center">
+        <div className="card col m5 s12 left">
           <span className="card-title">Driver Information</span>
-          <table className='card-content'>
+          <table className="card-content">
             <tbody>
               <tr>
                 <td>Name:</td>
@@ -36,13 +35,13 @@ const Home = () => {
               <tr>
                 <td>Distance Driven:</td>
                 <td>7,500 Miles</td>
-              </tr>         
+              </tr>
             </tbody>
-          </table>      
+          </table>
         </div>
-        <div className='card col m5 s12 right'>
+        <div className="card col m5 s12 right">
           <span className="card-title">Safety Information</span>
-          <table className='card-content'>
+          <table className="card-content">
             <tbody>
               <tr>
                 <td>Driver Rating:</td>
@@ -59,16 +58,16 @@ const Home = () => {
               <tr>
                 <td>Lane Adherence:</td>
                 <td>92/100</td>
-              </tr>          
+              </tr>
             </tbody>
-          </table>  
+          </table>
         </div>
       </div>
-      <div className='row center'>
-        <h3 className='white-text'> Driver Safety Score </h3>
+      <div className="row center">
+        <h3 className="white-text"> Driver Safety Score </h3>
       </div>
-      <div className='row'>
-        <div className='col m12 s12'>
+      <div className="row">
+        <div className="col m12 s12">
           <Bar labelData={scoreData.date} scoreData={scoreData.score} />
         </div>
       </div>
@@ -77,4 +76,3 @@ const Home = () => {
 }
 
 export default Home
-
