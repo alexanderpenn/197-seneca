@@ -1,9 +1,14 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import PropTypes from 'prop-types'
 
 const Bar = ({ labelData, scoreData }) => {
-  const data = canvas => {
+  const data = (canvas) => {
     const ctx = canvas.getContext('2d')
     const gradient = ctx.createLinearGradient(63, 81, 181, 700)
     gradient.addColorStop(0, '#929dd9')
@@ -20,9 +25,9 @@ const Bar = ({ labelData, scoreData }) => {
           pointRadius: 6,
           pointHoverRadius: 8,
           pointHoverBorderColor: 'white',
-          pointHoverBorderWidth: 2
-        }
-      ]
+          pointHoverBorderWidth: 2,
+        },
+      ],
     }
   }
 
@@ -35,17 +40,17 @@ const Bar = ({ labelData, scoreData }) => {
             display: true,
             labelString: 'Date',
             fontSize: 18,
-            fontColor: 'white'
+            fontColor: 'white',
           },
           gridLines: {
             display: false,
-            color: 'white'
+            color: 'white',
           },
           ticks: {
             fontColor: 'white',
-            fontSize: 16
-          }
-        }
+            fontSize: 16,
+          },
+        },
       ],
       yAxes: [
         {
@@ -53,24 +58,24 @@ const Bar = ({ labelData, scoreData }) => {
             display: true,
             labelString: 'Safety Score',
             fontSize: 18,
-            fontColor: 'white'
+            fontColor: 'white',
           },
           gridLines: {
             display: false,
-            color: 'white'
+            color: 'white',
           },
           ticks: {
             fontColor: 'white',
             fontSize: 16,
-            beginAtZero: true
-          }
-        }
-      ]
+            beginAtZero: true,
+          },
+        },
+      ],
     },
     tooltips: {
       titleFontSize: 13,
-      bodyFontSize: 13
-    }
+      bodyFontSize: 13,
+    },
   }
 
   return (
@@ -82,7 +87,7 @@ const Bar = ({ labelData, scoreData }) => {
 
 Bar.propTypes = {
   labelData: PropTypes.array,
-  bmiData: PropTypes.array
+  bmiData: PropTypes.array,
 }
 
 export default Bar

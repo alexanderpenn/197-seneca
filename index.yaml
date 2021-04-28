@@ -1,4 +1,5 @@
 indexes:
+
 - kind: User
   properties:
   - name: userId
@@ -12,4 +13,15 @@ indexes:
   - name: state
   - name: zip
   - name: url
+
+- kind: DrivingSnapshot
+  properties:
+  - name: userId
+  - name: date
+  - name: score
+  - name: milesDriven
+  - name: speedingCount
+  - name: tailGatingCount
+  - name: laneAdherence
+  
 

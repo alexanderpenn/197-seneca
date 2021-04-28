@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import { Fab, Action } from 'react-tiny-fab'
 import 'react-tiny-fab/dist/styles.css'
 import axios from 'axios'
 
-const FAB = () => {
+const FAB = (props) => {
   const styles = {
     top: 0,
     left: 0,
@@ -13,15 +14,18 @@ const FAB = () => {
     backgroundColor: '#818EC6',
   }
 
-  const handleVideoUpload = () => {
-  }
-
-  const handleLogOut = (e) => {
+  const handleLogOut = async (e) => {
     e.preventDefault()
-    axios.get('/auth/logout')
+    const response = await axios.get('/auth/logout')
+
+    if (response) {
+      props.callbackLogout()
+    }
   }
 
-  const handleContact = () => {
+  const handleContact = (e) => {
+    e.preventDefault()
+    window.location = 'mailto:lenz@wharton.upenn.edu'
   }
 
   return (
@@ -35,16 +39,8 @@ const FAB = () => {
 
       <Action
         style={{ backgroundColor: '#818EC6' }}
-        text="Upload Video"
-        onClick={handleVideoUpload}
-      >
-        <i className="material-icons">file_upload</i>
-      </Action>
-
-      <Action
-        style={{ backgroundColor: '#818EC6' }}
         text="Contact Us"
-        onClick={handleContact}
+        onClick={(e) => handleContact(e)}
       >
         <i className="material-icons">contact_support</i>
       </Action>
@@ -52,7 +48,7 @@ const FAB = () => {
       <Action
         style={{ backgroundColor: '#818EC6' }}
         text="Logout"
-        onClick={handleLogOut}
+        onClick={(e) => handleLogOut(e)}
       >
         <i className="material-icons">logout</i>
       </Action>

@@ -1,57 +1,93 @@
+/* eslint-disable max-len */
+import './styles/App.css'
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import './App.css'
-import Home from './components/home'
-import Auth from './components/authPage'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from './components/homePage'
+import LogIn from './components/logInPage'
+import SignUp from './components/signUpPage'
+import AuthWrapper from './components/AuthWrapper'
+
+const axios = require('axios')
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [drivingSnapshots, setDrivingSnapshots] = useState([])
 
-  const fetchUser = () => {
-    axios.get('auth/user').then((res) => {
+  const fetchLoginStatus = async () => axios.get('/auth/isLoggedIn').then((res) => {
+    setLoggedIn(res.data)
+  })
+
+  const fetchDrivingSnapshots = async () => axios.get('/auth/drivingSnapshots').then((res) => {
+    setDrivingSnapshots(res.data)
+  })
+
+  const fetchUser = async () => axios.get('/auth/user').then((res) => {
+    if (res.data !== false) {
       setUser(res.data)
-    })
-  }
+    } else {
+      setUser(false)
+    }
+  })
 
-  const fetchLoginStatus = () => {
-    axios.get('auth/isLoggedIn').then((res) => {
-      setLoggedIn(res.data)
-    })
+  const startLoadingData = async () => {
+    await fetchLoginStatus()
+    await fetchUser()
+    await fetchDrivingSnapshots()
+    setLoading(false)
   }
 
   useEffect(() => {
-    fetchLoginStatus()
-  })
+    startLoadingData()
+  }, [])
 
-  const element = (loggedIn ? <Home /> : <Auth />)
+  const callbackLogout = () => {
+    startLoadingData()
+  }
+
+  if (loading) {
+    return (
+      <div>
+        <h1>Loading data...</h1>
+      </div>
+    )
+  }
 
   return (
-    <div className="App">
-      <header className="App-header" />
-      { element }
-    </div>
+    <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/" exact>
+            <AuthWrapper isloggedIn={loggedIn}>
+              <Home user={user} drivingSnapshots={drivingSnapshots} callbackLogout={callbackLogout} />
+            </AuthWrapper>
+          </Route>
+
+          <Route path="/login" exact>
+            <LogIn />
+          </Route>
+
+          <Route path="/signup/:userId" exact>
+            <SignUp callbackLogout={callbackLogout} />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   )
 }
 
 export default App
 
-// TODO: enable users that havent signed up ot submit a form that modifies user object
-//       send key value pairs to axios signup endpoint
-//       update entity within datastore
-//       only serve the signup form if we can guarantee the user is signing up
-// TODO: Actually query user / login status and use element
-// TODO: consider using setInterval to auto refresh login status
-// TODO: (auth) remove passport
-// TODO: (auth) identify what i need to pass in to get email and what email currently is
-// TODO: (auth) handle errors
-// TODO: (passport) import into auth routes
-// TODO: (components/home) pull data from datastore
-// TODO: (components/home) enable google drive linking
-// TODO: (components/home) stylize charts:
+// TODO: Order Snapshots by date, remove misspelled snapshot
+// Fix render problem on redirect w/ hook
+// TODO: Stylization (charts, signup, card spacing, login)
+//       loginPage: Add logo
+// TODO: break down html into multiple react components
+// TODO: remove user in system in order to test out form submission
+//
+// TODO: (GTO) Parse and remove GTO comments, WebSocket, Cors, public, dist
+// TODO: (components/home):
 //        Popup on data points informing of changes
 //        Video Player to show specific infractions & the ability for a user to dispute infraction
-//        Design: Card spacing, fit chart on single page, black highlight on span elements,
-
-// TODO: run es linter
-// TODO: (GTO) WebSocket, Cors
+//        enable google drive access

@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "fs": "*",
     "materialize-css": "^1.0.0",
     "nodemon": "^2.0.6",
     "parcel-bundler": "^1.12.3",
@@ -25,8 +26,10 @@
     "react-bootstrap": "^1.5.2",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "^17.0.2",
+    "react-forms-materialize-css": "^1.0.1",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.2.0",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-tiny-fab": "^4.0.2",
     "uuid": "^8.3.2"
@@ -35,6 +38,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel watch public/index.html",
     "server": "nodemon src/backend/server.js",
+    "stop": "taskkill -f -im node.exe",
     "dev": "concurrently --kill-others \"npm run build\" \"npm run server\""
   },
   "eslintConfig": {
@@ -56,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.13.15",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-base": "^14.2.1",

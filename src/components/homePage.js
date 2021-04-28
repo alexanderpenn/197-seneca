@@ -1,16 +1,45 @@
-import React, { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
+/* eslint-disable no-bitwise */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+// import { v4 as uuidv4 } from 'uuid'
 import 'materialize-css/dist/css/materialize.min.css'
+import '../styles/App.css'
+
+import React, { useState } from 'react'
 import FAB from './fab'
-import '../App.css'
 import Bar from './bar'
 
-const Home = () => {
-  const [scoreData, setScoreData] = useState({ date: ['01/01/21', '01/02/21', '01/03/21', '01/04/21', '01/05/21'], score: [51, 78, 89, 76, 81] })
+const Home = (props) => {
+  const { user, drivingSnapshots, callbackLogout } = props
+  const vehicle = ` ${user.year} ${user.make} ${user.model}`
+  const residence = ` ${user.city}, ${user.state} ${user.zip}`
+  const dates = []
+  const scores = []
+  let speedingCount = 0
+  let laneAdherence = 0
+  let tailGatingCount = 0
+  let totalScore = 0
+  let totalDistance = -1
+  let startDate = -1
+  if (drivingSnapshots.length > 0) {
+    startDate = drivingSnapshots[0].date
+    totalDistance = drivingSnapshots.map((snap) => snap.milesDriven).reduce((a, b) => a + b)
+    drivingSnapshots.forEach((snap) => {
+      dates.push(snap.date)
+      scores.push(snap.score)
+      speedingCount += snap.speedingCount
+      tailGatingCount += snap.tailGatingCount
+
+      laneAdherence += ~~(snap.laneAdherence / drivingSnapshots.length)
+      totalScore += ~~(snap.score / drivingSnapshots.length)
+    })
+  }
+  const scoreData = { date: dates, score: scores }
 
   return (
     <div className="container">
-      <FAB />
+      <FAB callbackLogout={callbackLogout} />
       <div className="row center">
         <div className="card col m5 s12 left">
           <span className="card-title">Driver Information</span>
@@ -18,23 +47,23 @@ const Home = () => {
             <tbody>
               <tr>
                 <td>Name:</td>
-                <td>Alexander Lenz</td>
+                <td>{ user.displayName }</td>
               </tr>
               <tr>
                 <td>Vehicle:</td>
-                <td>2014 Honda CR-V</td>
+                <td>{ vehicle }</td>
               </tr>
               <tr>
                 <td>Residence:</td>
-                <td>Jersey City, NJ 07302</td>
+                <td>{ residence }</td>
               </tr>
               <tr>
                 <td>Policy Start Date:</td>
-                <td>01/01/21</td>
+                <td> { startDate } </td>
               </tr>
               <tr>
                 <td>Distance Driven:</td>
-                <td>7,500 Miles</td>
+                <td>{ totalDistance } Miles</td>
               </tr>
             </tbody>
           </table>
@@ -45,19 +74,19 @@ const Home = () => {
             <tbody>
               <tr>
                 <td>Driver Rating:</td>
-                <td>93</td>
+                <td>{ totalScore }</td>
               </tr>
               <tr>
                 <td>Speeding Count:</td>
-                <td>85</td>
+                <td>{ speedingCount }</td>
               </tr>
               <tr>
                 <td>Tailgating Count:</td>
-                <td>17</td>
+                <td>{ tailGatingCount }</td>
               </tr>
               <tr>
                 <td>Lane Adherence:</td>
-                <td>92/100</td>
+                <td>{ laneAdherence }/100</td>
               </tr>
             </tbody>
           </table>
