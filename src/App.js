@@ -80,14 +80,7 @@ const App = () => {
 export default App
 
 // TODO: Order Snapshots by date, remove misspelled snapshot
-// Fix render problem on redirect w/ hook
-// TODO: Stylization (charts, signup, card spacing, login)
-//       loginPage: Add logo
-// TODO: break down html into multiple react components
 // TODO: remove user in system in order to test out form submission
-//
+// Fix render problem on redirect w/ hook
+// TODO: break down html into multiple react components
 // TODO: (GTO) Parse and remove GTO comments, WebSocket, Cors, public, dist
-// TODO: (components/home):
-//        Popup on data points informing of changes
-//        Video Player to show specific infractions & the ability for a user to dispute infraction
-//        enable google drive access

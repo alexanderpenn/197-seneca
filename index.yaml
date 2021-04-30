@@ -18,6 +18,7 @@ indexes:
   properties:
   - name: userId
   - name: date
+    direction: asc
   - name: score
   - name: milesDriven
   - name: speedingCount

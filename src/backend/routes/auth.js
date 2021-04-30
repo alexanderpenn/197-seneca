@@ -134,7 +134,9 @@ router.get('/isLoggedIn', (req, res, next) => {
 router.get('/drivingSnapshots', (req, res, next) => {
   try {
     if (req.session.user) {
-      const query = datastore.createQuery('DrivingSnapshot').filter('userId', '=', req.session.user.userId)
+      const query = datastore.createQuery('DrivingSnapshot')
+        .filter('userId', '=', req.session.user.userId)
+        .order('date')
       datastore.runQuery(query)
         .then((entities) => res.send(entities[0]))
         .catch((err) => console.log(err))
