@@ -12,4 +12,4 @@ const LogIn = () => (
   </div>
 )
 
-module.exports = LogIn
+export default LogIn

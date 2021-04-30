@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { Fab, Action } from 'react-tiny-fab'
@@ -19,7 +20,7 @@ const FAB = (props) => {
     const response = await axios.get('/auth/logout')
 
     if (response) {
-      props.callbackLogout()
+      await props.dataCallBack()
     }
   }
 
@@ -40,7 +41,7 @@ const FAB = (props) => {
       <Action
         style={{ backgroundColor: '#818EC6' }}
         text="Contact Us"
-        onClick={(e) => handleContact(e)}
+        onClick={handleContact}
       >
         <i className="material-icons">contact_support</i>
       </Action>
@@ -48,7 +49,7 @@ const FAB = (props) => {
       <Action
         style={{ backgroundColor: '#818EC6' }}
         text="Logout"
-        onClick={(e) => handleLogOut(e)}
+        onClick={handleLogOut}
       >
         <i className="material-icons">logout</i>
       </Action>

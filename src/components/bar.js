@@ -87,7 +87,7 @@ const Bar = ({ labelData, scoreData }) => {
 
 Bar.propTypes = {
   labelData: PropTypes.array,
-  bmiData: PropTypes.array,
+  scoreData: PropTypes.array,
 }
 
 export default Bar

@@ -136,7 +136,6 @@ router.get('/drivingSnapshots', (req, res, next) => {
     if (req.session.user) {
       const query = datastore.createQuery('DrivingSnapshot')
         .filter('userId', '=', req.session.user.userId)
-        .order('date')
       datastore.runQuery(query)
         .then((entities) => res.send(entities[0]))
         .catch((err) => console.log(err))
@@ -175,7 +174,8 @@ router.post('/submitSignUp', isLoggedIn, async (req, res, next) => {
       zip,
       url,
     }
-    updateUserOnSignUp(datastore, newUser, userId).then(() => {
+    await updateUserOnSignUp(datastore, newUser, userId).then(() => {
+      req.session.user = newUser
       res.send(true)
     })
   } catch (err) {

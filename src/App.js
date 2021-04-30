@@ -1,11 +1,9 @@
-/* eslint-disable max-len */
 import './styles/App.css'
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './components/homePage'
 import LogIn from './components/logInPage'
 import SignUp from './components/signUpPage'
-import AuthWrapper from './components/AuthWrapper'
 
 const axios = require('axios')
 
@@ -27,7 +25,7 @@ const App = () => {
     if (res.data !== false) {
       setUser(res.data)
     } else {
-      setUser(false)
+      setUser({})
     }
   })
 
@@ -39,11 +37,15 @@ const App = () => {
   }
 
   useEffect(() => {
-    startLoadingData()
+    setInterval(() => {
+      startLoadingData()
+    }, 1000)
   }, [])
 
-  const callbackLogout = () => {
-    startLoadingData()
+  const dataCallBack = async () => {
+    setLoading(true)
+    await startLoadingData()
+    return { loggedIn, user }
   }
 
   if (loading) {
@@ -53,23 +55,19 @@ const App = () => {
       </div>
     )
   }
-
+  const component = loggedIn
+    ? <Home user={user} drivingSnapshots={drivingSnapshots} dataCallBack={dataCallBack} />
+    : <LogIn />
   return (
     <BrowserRouter>
       <div>
         <Switch>
           <Route path="/" exact>
-            <AuthWrapper isloggedIn={loggedIn}>
-              <Home user={user} drivingSnapshots={drivingSnapshots} callbackLogout={callbackLogout} />
-            </AuthWrapper>
-          </Route>
-
-          <Route path="/login" exact>
-            <LogIn />
+            { component }
           </Route>
 
           <Route path="/signup/:userId" exact>
-            <SignUp callbackLogout={callbackLogout} />
+            <SignUp />
           </Route>
         </Switch>
       </div>
@@ -78,9 +76,3 @@ const App = () => {
 }
 
 export default App
-
-// TODO: Order Snapshots by date, remove misspelled snapshot
-// TODO: remove user in system in order to test out form submission
-// Fix render problem on redirect w/ hook
-// TODO: break down html into multiple react components
-// TODO: (GTO) Parse and remove GTO comments, WebSocket, Cors, public, dist
